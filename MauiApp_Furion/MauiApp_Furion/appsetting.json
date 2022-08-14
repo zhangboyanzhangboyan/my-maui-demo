@@ -1,0 +1,7 @@
+{
+  "api": "https://oapi.dingtalk.com/robot/send?access_token=",
+  //机器人Token
+  "token": "3b2191cd9565f021dbe4b80b918f918b7ef2fc1be101417bf31a6b22074538e4",
+  //加签密钥
+  "secret": "SEC621ae2d4061059270a5c80dfff336cb2870f5db5f7abed7720eebdacbda265c3"
+}
