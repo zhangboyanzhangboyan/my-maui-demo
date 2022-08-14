@@ -1,11 +1,17 @@
-﻿namespace MauiApp1;
+﻿using MauiApp1.Services;
+
+namespace MauiApp1;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+	private readonly ITestService _testService;
 
-		MainPage = new AppShell();
-	}
+	public App(ITestService testService)
+	{
+		this._testService = testService;
+
+        InitializeComponent();
+
+        MainPage = new TestPage();
+    }
 }
