@@ -5,13 +5,17 @@ namespace MauiApp1;
 
 public partial class TestPage : ContentPage
 {
-    public TestPage()
+    private readonly ITestService _testService;
+
+    public TestPage(ITestService testService)
     {
         InitializeComponent();
+        this._testService = testService;
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
-        DisplayAlert("title", "message", "取消");
+        string message = _testService.GetString();
+        DisplayAlert("title", message, "取消");
     }
 }

@@ -6,12 +6,12 @@ public partial class App : Application
 {
 	private readonly ITestService _testService;
 
-	public App(ITestService testService)
+	public App(ITestService testService,TestPage testPage)
 	{
 		this._testService = testService;
 
         InitializeComponent();
 
-        MainPage = new TestPage();
+        MainPage = testPage;
     }
 }
