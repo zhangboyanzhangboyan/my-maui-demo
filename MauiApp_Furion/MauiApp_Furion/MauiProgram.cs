@@ -1,4 +1,5 @@
-﻿using System.Text.Encodings.Web;
+﻿using MauiApp_Furion.Services.DingdingRobotServices;
+using System.Text.Encodings.Web;
 
 namespace MauiApp_Furion;
 
@@ -16,6 +17,11 @@ public static class MauiProgram
             });
 
         //builder.Services.AddSingleton<MainPage,MainPage>();
+
+        builder.Services.AddHttpClient();
+
+        builder.Services.AddTransient<ISendMessage, SendMessage>();
+        builder.Services.AddSingleton<MainPage, MainPage>();
 
         return builder.Build();
     }

@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using MauiApp_Furion.Services.DingdingRobotServices;
+using System.Net;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -9,13 +11,15 @@ public partial class MainPage : ContentPage
 {
     string hello = "";
     int count = 0;
+    private readonly ISendMessage _sendMessage;
 
-    public MainPage()
+    public MainPage(ISendMessage sendMessage)
     {
         InitializeComponent();
+        this._sendMessage = sendMessage;
     }
 
-    private void OnCounterClicked(object sender, EventArgs e)
+    private async void OnCounterClickedTest(object sender, EventArgs e)
     {
         var api = "https://oapi.dingtalk.com/robot/send?access_token=";
         //机器人Token
@@ -36,19 +40,24 @@ public partial class MainPage : ContentPage
         #endregion
 
         var robotUrl = $"{api}{token}&timestamp={timestamp}&sign={sign}";
-        String textMsg = "{ \"msgtype\": \"text\", \"text\": {\"content\": \"" + hello + "\"}}";
-        string s = Post(robotUrl, textMsg, null);
+        try
+        {
+            var res = await _sendMessage.SendMessageToDingdingAsync(robotUrl, hello);
 
+        }
+        catch (Exception ex)
+        {
+        }
         count++;
 
         if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
+            CounterBtnTest.Text = $"Clicked {count} time";
         else
-            CounterBtn.Text = $"Clicked {count} times";
+            CounterBtnTest.Text = $"Clicked {count} times";
 
         entry.Text = "";
 
-        SemanticScreenReader.Announce(CounterBtn.Text);
+        SemanticScreenReader.Announce(CounterBtnTest.Text);
     }
 
     private void OnTextCompleted(object sender, EventArgs e)
@@ -73,6 +82,10 @@ public partial class MainPage : ContentPage
         }
     }
     #endregion
+
+    #region Sign
+
+    #endregion 
 
     #region Post  
     /// <summary>  

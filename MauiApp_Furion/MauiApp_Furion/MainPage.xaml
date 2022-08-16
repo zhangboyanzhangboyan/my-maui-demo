@@ -32,11 +32,12 @@
                     Placeholder="Enter text"
                     TextChanged="OnTextChanged"
                     Completed="OnTextCompleted" />
+            
             <Button
-                x:Name="CounterBtn"
+                x:Name="CounterBtnTest"
                 Text="Click me"
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Clicked="OnCounterClickedTest"
                 HorizontalOptions="Center" />
 
         </VerticalStackLayout>
